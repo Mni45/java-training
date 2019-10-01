@@ -148,8 +148,12 @@ public class ArrayTraining {
      * @return array with reversed values, eg: {3, 2, 1}
      */
     public int[] reverse(int[] array) {
-
-        return reverse(array);
+	for (int i = 0; i < array.length / 2; i++) {
+        	int x = array[i];
+        	array[i] = array[array.length - 1 - i];
+        	array[array.length - 1 - i] = x;
+   	}
+        return array;
     }
 
     /**
@@ -159,13 +163,12 @@ public class ArrayTraining {
      * eg: {1, 2, 3, 4, 5}
      */
     public int[] concat(int[] first, int[] second) {
+
 	int[] theTwoArrays = new int[first.length + second.length];
-	for (int i = 0; i < first.length; i++){
-		theTwoArrays[i] = first[i];
-	}
-	for (int i = first.length; i < first.length + second.length; i++){
-		theTwoArrays[i] = second[second.length - i];	
-	}
+	
+	System.arraycopy(first, 0, theTwoArrays, 0, first.length);
+        System.arraycopy(second, 0, theTwoArrays, first.length, second.length);
+
         return theTwoArrays ;
     }
 }
